@@ -1,3 +1,4 @@
+<!--Closures come up all the time in interviews-->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +10,52 @@
 </head>
 
 <body>
+  <script>
+    //Closures let you access variables or functions even after they have been closed (return)
+    //closure as a function
+    function outer() {
+      const outerVar = "Hey I'm the outer var!"
+      function inner() {
+        const innerVar = "Inner var me!"
+        console.log(innerVar); //will work
+        console.log(outerVar); //will also work because it is inside function
+      }
+      inner(); //will work
+      return inner; //will end execution
+    }
+    const innerFn = outer();
+    innerFn(); //will still run even though function has ended executing
 
+    //closure as private variable
+    function createGreeting(greeting = ''){
+      const myGreet = greeting.toUpperCase();
+      return function(name) {
+        return `${myGreet} ${name}` //variable 'myGreet' in inner scope references variable defined in outer scope (referred to as a closure)
+      }
+    }
+
+//after we run these functions, they are closed but we are still able to access the variables
+    const sayHello = createGreeting('hello');
+    const sayHey = createGreeting('hey');
+
+    console.log(sayHello('John')); //HELLO John
+    console.log(sayHello('Kate')); //HELLO John
+    console.log(sayHey('John')); //HEY Kate
+
+
+//creating private variables
+    function createGame(gameName) {
+      let score = 0;
+      return function win() {
+        score ++;
+        return `Your name ${gameName} score is ${score}`
+      }
+    }
+
+    const hockeyGame = createGame('Hockey'); //whenever we run hockeyGame function, it will increment score
+    const soccerGame = createGame('Soccer'); //can also be run at the same time as hockeyGame but score is relevant to soccerGame, not hockeyGame
+
+  </script>
 </body>
 
 </html>
