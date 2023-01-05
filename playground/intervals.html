@@ -9,7 +9,64 @@
 </head>
 
 <body>
+  <script>
+    // setTimeout(); //globally scoped method available in JS (recommended to not use window.setTimeout() because when using nodeJS, it won't recognize window)
 
+    //Example-setTimeout()
+    setTimeout(function() {
+      console.log('Done!');
+    }, 200); //how many milliseconds to run this after
+
+    //Example 2-passing a function to setTimeout
+    function buzzer() {
+      console.log('ENGGG');
+    }
+
+    setTimeout(buzzer, 500) //function passed directly to setTimeout method
+
+    //Javascript will run things asychronously, it's the nature of the language
+    //Example of Callback (asynchronous nature of Javascript)
+    //console.log('Starting');
+    //setTimeout(buzzer, 500);
+    //console.log('Finishing');
+    //as javascript runs this code, it will run the first console.log, and then the second console.log but after 5 milliseconds, it will run the setTimeout, even if it passes it over initially
+    //common to do in promises and wait async which we'll learn about later
+
+
+    //setInterval
+    //tells us how often we'd like to keep running something
+    setInterval(buzzer, 100);
+
+
+    //when setInterval is run, there is no option to get it to run right away so we have to hardcore that functionality
+    //we create a function that takes another function
+    //it is read like a number would be
+    function setImmediateInterval(funcToRun, ms) { //funcToRun is our function and we pass it the ms
+      funcToRun();
+      return setInterval(funcToRun, ms);
+    }
+
+    setImmediateInterval(buzzer, 2000);
+
+    //Clearing a timer/interval
+    //you must save the reference to that timer/interval first
+    function destroy() {
+      document.body.innerHTML = `
+      <p>Destroyed</p>
+      `;
+    }
+
+    //Clearing timer
+
+    // const bombTimer = setTimeout(destroy, 2000);
+
+    // window.addEventListener('click', function () {
+    //   console.log('You clicked!  You saved the world')
+    //   clearTimeout(bombTimer)
+    // })
+    
+    //Intervals work the same way as clearing timeOut
+  </script>
 </body>
 
 </html>
