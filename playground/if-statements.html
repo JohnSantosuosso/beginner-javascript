@@ -138,6 +138,44 @@
       empty string */
   
   /* ---------------------------------------------------------------------------------------------------- */
+    //Coercion
+    //Coercion is when we take something that is of a different type (string, number, etc) and coerce it into a true/false
+    //typically involves using the bang operator
+    //const name = 'John'
+    //!name => false...gives you the opposite
+    //!!name => true ...checks whether name exists or not
+    //when you see double bang in if statements, someone is coercing it into a boolean
+
+    const isCool = true;
+
+    if(!isCool) {
+      console.log('You are not cool');
+    }
+
+    //Ternary
+    //short-hand if statement for simple if/else
+    //must always include false case at end
+    const count = 2;
+    const word = count === 1 ? 'item' : 'items'; //ternary operation
+    const sentence = `You have ${count} ${word} in your cart.`
+    console.log(sentence);
+
+    //ternary for running functions
+    function showAdminBar() {
+      console.log('Showing Admin Bar');
+    }
+    const isAdmin = true;
+    isAdmin ? showAdminBar() : null; //ternary for checking if a function is true
+
+  //Short circuiting with AND AND trick
+    isAdmin && showAdminBar(); //shortcut way to write is  isAdmin ? showAdminBar() : null;
+    //this is very common in React
+    //React Example:
+    //it's hard to use if statements in React, so you'll see something like this a lot
+    // {isAdmin && <AdminBar/>}
+    
+    //other alternative way to write in Vanilla JS: if (isAdmin) { showAdminBar() }
+  /* ---------------------------------------------------------------------------------------------------- */
   </script>
 </body>
 

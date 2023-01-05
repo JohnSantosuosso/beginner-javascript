@@ -8,8 +8,55 @@
   <link rel="stylesheet" href="../base.css">
 </head>
 
-
 <body>
+  <!--CSS class to add to turtle-->
+  <style>
+    .turt {
+      position: relative;
+      --x: 0; /*way to declare CSS variables*/
+      --y: 0; /*way to declare CSS variables*/
+      transform: translateX(var(--x)) translateY(var(--y));
+      transition: transform 0.2s; /*smooths out movement */
+    }
+  </style>
+
+<!--Add image-->
+<img width="200" src="./turtle.png" alt="Turtle" class="turt">
+
+<!--Add script to move turtle-->
+<script>
+  const turtle = document.querySelector('.turt');
+  let x = 0;
+  let y = 0;
+  function handleKeyDown(e) {
+    if (!e.key.includes('Arrow')) { return; } //single line if, if key does not include arrow do not record it
+    switch(e.key) {
+      case 'ArrowUp':
+        y -= 1;
+        break; //always add break
+      case 'ArrowDown':
+        y += 1;
+        break;
+      case 'ArrowRight':
+        x += 1;
+        break;
+      case 'ArrowLeft':
+        x -= 1;
+        break;
+      default: //always add default case
+        console.log('That is not a valid move');
+        break;
+    }
+    // turtle.style.background = 'red'; //applies inline style to turtle using JS..just an example
+    //another example of the same thing above:
+    // turtle.style['background'] = 'red' //called SQUARE BRACKET notation which only work with standard css classes (not custom)
+    //we can't apply a css variable in square brackets in this instance
+    const speed = 50;
+
+    turtle.setAttribute('style', `--x: ${x * speed }px; --y: ${y * speed }px`); //this sets movement by feeding it the x coordinate of where it moves when the arrow key is pressed (1 in any direction per functionHandleKeyDown)
+  }
+  window.addEventListener('keydown', handleKeyDown) //goes outside function
+</script>
 
 </body>
 
