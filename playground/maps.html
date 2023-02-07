@@ -10,6 +10,82 @@
 
 <body>
   <script>
+    //MAP
+    //similiar to an object
+    //we use the following APIs to add items to a Map
+    //.set()
+    //.has()
+    //.delete()
+
+    const myMap = new Map();
+
+    //.set()
+    myMap.set('name', 'wes'); //keys can be any type other than just string--we could pass a key that is a number or an OBJECT
+    // console.log(myMap)--Output
+    // Map(1)
+    //   [[Entries]]
+    //     0: {"name" => "wes"}
+    //     size: 1
+    //     [[Prototype]]: Map
+
+    //myMap setting Object as a key
+    const person1 = {
+      name: 'wes',
+      age: 200
+    }
+
+    myMap.set(person1, 'Really Cool');
+    //output:
+    //key is person1, value is 'Really Cool'
+
+    //using variables and .get() with myMap
+    //.get will get the value associated with the key
+    const score = 100;
+    const prizes = newMap(); //set variable equal to Map
+    prizes.set(100, 'Bear');
+    prizes.set(200, 'Duck');
+    prizes.set(300, 'Car');
+    console.log(`You win a ${prizes.get(score)}`);//output 'You win a Bear'
+    //if we made const score = 200, output would be 'You win a Duck'
+
+    //The order you put things into a Map are the order they will remain in
+
+    //forEach and 'for Of'
+    //if we use a forEach to loop through 'prizes', we can return the value with forEach
+    //if we use a for of--for () then we can return both the value and and key
+
+    //Using for() to turn key value into variables
+    // const ul = document.querySelector('.prizes');
+    // for(const [points, prize] of prizes) {
+    //   console.log(points, prize)
+    // }
+    //Output will be an array
+    // 100 "Bear"
+    // 200 "Duck"
+    // 300 "Car"
+
+    //Doing the same thing but turning the output into an element and inserting it into the document
+    const ul = document.querySelector('.prizes');
+    for(const [points, prize] of prizes) {
+      const li = `<li>${points} - ${prize}</li>`
+      ul.insertAdjacentElement('afterbegin', li);
+    }
+
+    //HOW TO TURN OBJECT INTO JSON
+    //JSON.stringify(object)
+    //Example:
+    //JSON.stringify(person)
+    //{"name":"wes", "age", 100}
+
+    //TURN STRING BACK INTO OBJECT
+    //JSON.parse(string)
+    //JSON.parse('"name":"wes", "age", 100')
+
+    //JSON does not currently handle Maps--ie. JSON.stringify(myMap) will not work
+
+    
+
+    
 
   </script>
 </body>

@@ -11,6 +11,113 @@
 </head>
 
 <body>
+  <script>
+    /*ARRAYS
+    -List where order matters
+    -Each element in an array is called an 'item'
+    -Items in arrays can be objects, other arrays, strings, etc.
+    -We use curly brackets { } for an object, [ ] square brackets for an array
+    -There are no keys in an array, they are INDEXES*/
+    
+    const names = ['wes', 'kait', 'snickers'];// this is known as an array literal...we can also use const names = new Array(); but not common
+
+    //if we type typeof names for an array, it will return 'object'...arrays are just objects at the end of the day
+    //to see if something is an array--Array.isArray(names)
+
+    //Accessing elements in an array
+    console.log(names[1]); //use index value
+
+    //see how many items are in array
+    console.log(names.length)
+
+    //get last item of an array
+    console.log(names.length - 1);
+
+    //Other methods that can be used in an array
+    //many methods available in array prototype
+    //open prototype when console logging an array and see what's available
+
+    //More important methods in an array
+    //Immutable-the methods do not change the original thing but return a new array
+    //Mutable-perform mutations on an array, so it changes the original version of it
+
+    //Mutable method
+    const numbers = [1,2,3,4,5,6,7,8,9]
+    const numbersBackwards = numbers.reverse()
+    console.log(numbersBackwards); //will return new array
+    console.log(numbers); //will return reversed array, because reverse is mutable.  The original array has been mutated.
+    //Mantra of React- don't modify/mutate original array, create a new one
+
+    //Immutable
+    numbers.slice(2, 4);//immutable so we need to create a new array
+    const pizzaSlice = numbers.slice(2,4);//will create a new array from index 2-4
+
+    //any time you want to use a mutation method and not mutate the original array, take a copy of the array
+    const numbersReversed = [...numbers]; //use spread to create a copy
+    numbersReversed.reverse();
+
+    //add item to end of array using .push()
+    //mutates array
+    names.push('lux');
+    //to avoid mutating
+    const names2 = [...names, 'lux']; //this is very common to do in React
+
+    //add item to beginning of array using .unshift()
+    //mutates array
+    names.unshift('poppy');
+    //to avoid mutating
+    const names3 = ['poppy'...names]
+
+    //slice()
+    //immutable
+    //includes shadow
+
+    //splice()
+    //mutates the original array
+    numbers.splice(3, 2); //we will start at index 3 and slice 4 and 5 ...the next 2
+    //better to use slice() because it DOES NOT mutate the orignal array
+
+    //adding items to middle
+    //use spread method
+    const bikes = ['bianchi', 'miele', 'panasonic', 'miyata']
+    const newBikes = [ ...bikes.slice(0,2), 'benotto', ...bikes.slice(2)] //takes first two, adds new item at index 2, then adds last two
+
+    //remove item
+    const newBikes2 = [...newBikes.slice(0,3),...newBikes.slice(4) ]//VERY COMMON IN REACT
+
+
+    //Common use case in React
+    //Remove a comment
+    const comments = [
+      {text: 'Cool Beans', id: 123},
+      {text: 'Great', id: 432},
+      {text: 'Awesome', id: 422}
+    ]
+
+    //Example 1-Removing Comment
+    // function deleteComment(id, comments) {
+    //   //find index of an item
+    //   const kaitIndex = names.findIndex(name => name === 'kait') //we can just pass the name, we have to loop through, quick way to write the function
+    //   const newNamesWithoutKait = [...names.slice(0, kaitIndex), ...names.slice(kaitIndex + 1)];//get everything up to kait index...we could also use .flat()
+    // }
+
+    //Example 2-Removing Comment, better way
+      function deleteComment(id, comments) {
+        const commentIndex = comments.findIndex(comment => comment.id === id);
+        return [...comments.slice(0, commentIndex), ...comments.slice(commentIndex + 1)] //returns new array with comments removed
+      }
+      // console.log(deleteComment(233, comments))
+      // to overwrite, we could just setup const comments as a let
+
+
+      
+      //METHOD CARDIO
+      //Static methods-
+      //Array.of()--static method
+      //Array.prototype.methodName()--
+    
+      
+  </script>
 
 </body>
 
