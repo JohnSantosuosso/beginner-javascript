@@ -10,6 +10,142 @@
 
 <body>
   <script>
+    //Objects
+    //Group together properties and values (keys and values) such as storing related data, storing custom data, etc.
+    //Used where order of properties does not matter (versus an array)
+    //never rely on order you put properties into object to remain the same (that is okay though)
+
+    //Object literal syntax
+    const person = {
+      name: 'wes', //property: 'value'...property is name, value is 'wes'
+      age: 100,
+      clothing: { shirts: 10, pants: 2 },
+    };
+
+    //alternative Object declaration form (won't see often because Object literal syntax is preferred)
+    // const person1 = new Object({
+    //   name: 'wes',
+    //   age: 100
+    // });
+
+    //we can pass variables as values
+      // const age = 100;
+      // const person2 = {
+      //   name: 'wes',
+      //   age: age //we can also just write age since property and value are the same
+      // }
+    
+    //properties of objects should be named in camelCase..but we can also put spaces and dashes in properties..ie. really-cool or really cool
+
+    //you can also add sub properties (nested properties)
+    //Example
+    // clothing: { shirts: 10, pants: 2 }
+
+    //you can add properties
+    //person.job = 'Web Developer' will be added to person object
+
+    //you can update properties of an object even when they are declared with const
+    //person.age = 50...even though person was defined as const, it just means that person cannot be replaced but it's properties can be!
+
+    //you can freeze objects so that object's properties cannot be changed
+    //westFroze = Object.freeze(wes); //none of wes's properties can be changed--the wes object is IMMUTABLE
+
+    //calling properties--we referenced the Object name and the property
+    //Example: person.age...this is called DOT NOTATION
+    //Example 2: person['age']....this is called SQUARE BRACKET NOTATION..also can be used 
+    //may be used if we are passing a variable
+    //may have to be used if response comes in from server side
+
+    //we can also use to call sub properties
+    //person.clothing.pants
+    
+    // DELETE properties
+    //use delete
+    // delete person.age
+
+    //setting values as null or undefined
+    //may be done as a placeholder
+    //person.age = undefined;
+    //person.age = null;
+    
+    //METHODS
+    //A method is a function that lives inside an object
+    //Example using 'this'
+    const john ={
+      name: 'john',
+      sayHello: function(greeting = 'Hey') {
+        return `${greeting} ${this.name}` //'this' refers to what's left of the dot, aka the object..we can reference the object throughout the function or different functions inside the object by referencing 'this'
+      }
+    };
+    //method shorthand (same as above but with shorthand syntax and we don't have access to 'this'
+    //we never have access to 'this' if we use arrow functions to declare function
+    // sneeze: function () => {
+    //   console.log('Achoo');
+    // }
+
+
+    //REFERENCE VS. VALUE
+    //setting variable equal to variable
+    let name1 = 'wes';
+    let name2 = 'wes';
+
+    name1 = 'scott'; //change value of name1
+
+    name1 = name2; //change value of name 1 again to set equal to name2
+
+    console.log(name1 === name2); //will return true
+
+    name2 = 'westopher' //change value of name2
+    //name1 will not be 'westopher' because we haven't changed it yet
+    //when we set one string variable to be another, the value is copied
+    //when one variable is updated, the other will not update automatically
+
+    //Now with objects, which are a little different
+    const person10 = {
+      first: 'wes',
+      last: 'bos'
+    }
+
+    const person11 = {
+      first: 'wes',
+      last: 'bos'
+    }
+
+    console.log(person10 === person11); //will return false
+    //why does it return false? even though contents are the same
+    //when objects are compared, it is done by reference to the object itself
+    //not the values inside!
+
+    //Now we create a new person and set them equal to a previously created person
+    const person12 = person11;
+    person12.first = 'Larry';
+    console.log(person12.first); //first will be Larry
+    console.log(person11.first); //first will also be Larry
+    //FUNDAMENTAL CONCEPT--
+    //the new variable references (or points to) other variable
+    //person12 was never it's own object, it was just pointing at an object
+    //if we truly wanted a copy we'd use a SPREAD
+    //const person12 = { ...person11 } //SPREAD EXAMPLE
+    //that allows us to copy an object without using pointers
+    //another way to write it is: 
+    //const person12 = Object.assign([], person11);
+    //now if we said person12.first = 'Larry'...person11.first would still be 'wes'
+    //this only goes one level deep though!
+    //if we had a nested property such as clothing: {shirts: 10, pants: 100}
+    //the pointer problem would occur
+    //Summary:  SPREAD operator only does shallow copies (only goes 1 level deep)
+    //To do deep copy, we'd have to use a utility library (i.e. Lodash) to make deep copies
+
+    //Passing in reference in functions (same concepts)
+    const name10 = 'wes'
+    function doStuff(data) {
+      data = 'something';
+    }
+    doStuff(name10); //will return 'wes' not 'something'
+    //if you pass in an object into a function --the EXTERNAL OBJECT will also be updated
+    //i.e. if we modified an object inside the doStuff function
+    //in that case, we'd need to pass in the data as a COPY
+    
 
   </script>
 </body>

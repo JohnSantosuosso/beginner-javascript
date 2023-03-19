@@ -10,9 +10,172 @@
 
 <body>
   <script>
-    if (10 > 2) {
+  /* ---------------------------------------------------------------------------------------------------- */
+    /*once condition is met, conditional stops running*/
+    if (10 > 2) { /*condition is 10 > 2 */
       console.log('Yep');
+
+    } else if(11 > 10) {
+      console.log('Yep');
+
+    } else if(3 > 1) {
+        console.log('Nope');
+    } else {
+      console.log('Done');
     }
+    //Conditional Examples
+
+    /*Example 1--Function with conditional */
+    // function slugify(sentence, lowercase) { /*lowercase is an optional argument--true or false*/
+    //   if (lowercase) {
+    //     return sentence.replace(/\s/g, '-').toLowerCase(); /*regex always starts with /\ */
+    //   } else {
+    //     return sentence.replace(/\s/g, '-');
+    //   }
+    // }
+
+    /*Example 2--No else but doing the same thing as Example 1 */
+    // function slugify(sentence, lowercase) { /*lowercase is an optional argument--true or false*/
+    //   if (lowercase) {
+    //     return sentence.replace(/\s/g, '-').toLowerCase(); /*regex always starts with /\ */
+    //   }
+    //   return sentence.replace(/\s/g, '-');
+    // }
+
+    /*Example 3--Declaring variable */
+      // function slugify(sentence, lowercase) {
+      //   let slug = sentence.replace(/\s/g, '-');
+      //   if (lowercase) {
+      //     slug = slug.toLowerCase();
+      //   }
+      //   return slug;
+      // }
+
+    /* Comparisons: == vs === */
+    //using double equals (==) doesn't check if type is the same */
+    //Example age == '100' will not check if age type is the same as '100'
+    //using triple equals (===) checks type as well
+    //it is recommended to always use triple equals
+
+    //the only time we'd use double equals is to check if null == undefined
+    //this is NOT typically done
+
+    //Does not equal (!==)
+    // name !=== 'Keith'  means name does not equal 'Keith'
+    // 10 !== '10'  =>true
+    // 10 != '10'   =>false because type of is not checked
+
+    //we don't use double or triple equals when using < or > because < or > are only used with numbers
+    
+    //Using comparisons with conditionals
+    //Or statement
+    const name = 'John';
+    if (name === 'John' || name === 'Wes') {
+      console.log('Cool Name!');
+    }
+    //And statement
+    const first = 'John';
+    const last = 'Santo'
+    if (first === 'John' && last === 'Santo') {
+      console.log('Cool Name!');
+    }
+
+    //Using BEDMAS--parentheses
+    const firstName = 'John';
+    const lastName = 'Santo'
+    if (firstName === 'John' || (firstName === 'John' && lastName === 'Santo')) {
+      console.log('Cool Name!');
+    }
+
+    //Truthy & Falsy
+    //true && true && true && true => true
+    //false && true && true && true => false
+    //false || true || true || true => true
+
+    //Using functions with if statements
+    //.includes()
+    //will return true or false
+    const fullName = 'awe'
+    const isAwesomeName = 'awesome'.includes(fullName);
+    if(isAwesomeName) {
+      console.log('Super awesome name')
+    };
+
+    //Example 2--using return and passing function into conditional
+    function nameIsAwesome(awesomeName) {
+      return 'awesome'.includes(awesomeName);
+    }
+    //adding on to Example 2 to pass function into conditional
+    if(nameIsAwesome('john')) {
+      console.log('Cool Name');
+    } else {
+      console.log('Not cool name');
+    };
+
+    //If statements may also take variables that are truthy and falsy
+    const dog = 'snickers'
+
+    if(dog) {
+      console.log('you have a dog');
+    } else {
+      console.log('you dont have a dog');
+    }
+
+    //Truthy and Falsy values
+    //when run, do they evaluate to true or false by default?
+
+    //Truthy Values
+   /*   1
+      -10
+      full string
+      a string of "0" */
+
+    //Falsy Values
+  /*  0
+      undefined variable
+      Variable set to null
+      a variable set to `"hello" - 10` NaN
+      empty string */
+  
+  /* ---------------------------------------------------------------------------------------------------- */
+    //Coercion
+    //Coercion is when we take something that is of a different type (string, number, etc) and coerce it into a true/false
+    //typically involves using the bang operator
+    //const name = 'John'
+    //!name => false...gives you the opposite
+    //!!name => true ...checks whether name exists or not
+    //when you see double bang in if statements, someone is coercing it into a boolean
+
+    const isCool = true;
+
+    if(!isCool) {
+      console.log('You are not cool');
+    }
+
+    //Ternary
+    //short-hand if statement for simple if/else
+    //must always include false case at end
+    const count = 2;
+    const word = count === 1 ? 'item' : 'items'; //ternary operation
+    const sentence = `You have ${count} ${word} in your cart.`
+    console.log(sentence);
+
+    //ternary for running functions
+    function showAdminBar() {
+      console.log('Showing Admin Bar');
+    }
+    const isAdmin = true;
+    isAdmin ? showAdminBar() : null; //ternary for checking if a function is true
+
+  //Short circuiting with AND AND trick
+    isAdmin && showAdminBar(); //shortcut way to write is  isAdmin ? showAdminBar() : null;
+    //this is very common in React
+    //React Example:
+    //it's hard to use if statements in React, so you'll see something like this a lot
+    // {isAdmin && <AdminBar/>}
+    
+    //other alternative way to write in Vanilla JS: if (isAdmin) { showAdminBar() }
+  /* ---------------------------------------------------------------------------------------------------- */
   </script>
 </body>
 
