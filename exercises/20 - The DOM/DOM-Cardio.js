@@ -62,19 +62,37 @@ const myDiv2P = document.querySelector('.myDiv2');
 myDiv2P.firstElementChild.remove();
 
 // create a function called generatePlayerCard that takes in three arguments: name, age, and height
-
 // have that function return html that looks like this:
 // <div class="playerCard">
 //   <h2>NAME — AGE</h2>
 //   <p>They are HEIGHT and AGE years old. In Dog years this person would be AGEINDOGYEARS. That would be a tall dog!</p>
 // </div>
+generatePlayerCard = function(name, age, height) {
+  const myPlayerCard =`
+ <div class="playerCard">
+  <h2>${name} — ${age}</h2>
+  <p>They are ${height} and ${age} years old. In Dog years this person would be ${age * 7}. That would be a tall dog!</p>
+ </div>
+`;
+return myPlayerCard;
+}
 
 // make a new div with a class of cards
+const cards = document.createElement('div');
+cards.classList.add('cards');
 
 // make 4 player cards using generatePlayerCard
+let playerCards = generatePlayerCard('John', '35', '72');
+playerCards += generatePlayerCard('Mike', '35', '71');
+playerCards += generatePlayerCard('Donald', '38', '68');
+playerCards += generatePlayerCard('Bill', '57', '60');
 
 // append those cards to the div
+cards.innerHTML = playerCards;
+myDiv.insertAdjacentElement('beforebegin', cards);
+
 // put the div into the DOM just before the wrapper element
+
 // Bonus, put a delete Button on each card so when you click it, the whole card is removed
 
 // select all the buttons!

@@ -62,8 +62,6 @@ pizzaList.insertAdjacentText('beforeend', ' Pizza! ')
 //inserts Pizza! inside class at end
 //more possible options are availabe inside MDN docs
 
-//Elements are anything wrapped INSIDE a tag (inside div, p, etc.)
-//Nodes are anything (not wrapped in tag though) i.e. div, p
 
 //CLASSES
 //common to do in JavaScript, different than adding properties
@@ -97,4 +95,7 @@ pic.setAttribute('alt', 'REALLY CUTE PUP')
 
 //to get an attribute
 console.log(pic.getAttribute('alt'));
+
+//Elements are anything wrapped INSIDE a tag (inside div, p, etc.)
+//Nodes are anything (not wrapped in tag though) i.e. div, p
 
