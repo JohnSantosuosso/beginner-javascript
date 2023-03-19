@@ -9,7 +9,49 @@
 </head>
 
 <body>
+  <!--console.dir(myDate) will return Prototype
+  instead of console.log(myDate) which just returns myDate-->
+  <!--if we call myDate.getFullYear() it will return 2025
+  because when a Date object is created, it comes with custom
+methods aka from the constructor (constructor is what creates the object)
+if we call myDate instance of Date--we'll get true because
+myDate is an instance of the Date Object-->
+  <!---->
+  <button class ="one">Button 1</button>
+  <button class ="two">Button 2</button>
+  <script>
 
+    const myDate = new Date('August 11, 2025');
+    const button1 = document.querySelector('.one');
+    const button2 = document.querySelector('.two');
+
+    function tellMeAboutTheButton() {
+        console.log(this);
+      }
+      //button 1 and button 2 are now instances of the button in browser aka button1 & button2 in the browser
+      //tellMeAboutTheButton is now 'bound' to button1 & button2 in the browser
+      //that means calling 'this' references the HTML element
+      //if we used an arrow function instead, 'this' would be scoped to the window
+      //anytime you use an arrow function that is what it does
+      button1.addEventListener('click', tellMeAboutTheButton);
+      button2.addEventListener('click', tellMeAboutTheButton);
+
+    //the function that makes an object is called a 'Constructor'
+    function Pizza(toppings = [], customer) {
+      console.log('Making a pizza')
+      //save toppings and customer that were passed into this instance of Pizza
+      this.toppings = toppings;
+      this.customer = customer;
+      //we can add an id as well even though it wsn't passed
+      this.id = Math.floor(Math.random() * 16777215).toString(16);
+    }
+
+    //create the pizza
+    const pepperoniPizza = new Pizza(['pepperoni'], 'Wes Bos');
+    const canadianPizza = new Pizza(['pineapple, mushrooms'], 'Kate Bos');
+
+    //Prototype methods are methods that can be shared among pizzas
+  </script>
 </body>
 
 </html>
